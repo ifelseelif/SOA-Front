@@ -8,24 +8,24 @@ import { UnitOfMeasures } from "../../data/products/unitOfMeasures";
 function ProductPage() {
 
     const getValueProperties = (row) => {
-        return [row.id[0], row.name[0], row.coordinates[0].x[0], row.coordinates[0].y[0], row.creationDate[0],
-            row.manufactureCost[0], row.price[0], row.unitOfMeasure[0], row.manufacturer[0].id[0]]
+        return [row.id, row.name, row.coordinates.x, row.coordinates.y, row.creationDate,
+            row.manufactureCost, row.price, row.unitOfMeasure, row.manufacturer.id]
     }
 
     const rawToProduct = (row) => {
         return {
-            id : row.id[0],
-            name : row.name[0],
+            id : row.id,
+            name : row.name,
             coordinates : {
-                x: row.coordinates[0].x[0],
-                y: row.coordinates[0].y[0]
+                x: row.coordinates.x,
+                y: row.coordinates.y
             },
-            creationDate : row.creationDate[0],
-            price : row.price[0],
-            manufactureCost : row.manufactureCost[0],
-            unitOfMeasure : row.unitOfMeasure[0],
+            creationDate : row.creationDate,
+            price : row.price,
+            manufactureCost : row.manufactureCost,
+            unitOfMeasure : row.unitOfMeasure,
             manufacturer : {
-                id : row.manufacturer[0].id[0]
+                id : row.manufacturer.id
             }
         }
     }

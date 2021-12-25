@@ -18,7 +18,7 @@ function SpecialPage() {
     function execute() {
         setShowError(false)
         setIsOk(false)
-        fetch("/products?manufactureCost=" + manufactureCost, { method: 'DELETE' })
+        fetch("/soa-1/api/special/?manufactureCost=" + manufactureCost, { method: 'DELETE' })
             .then((data) => {
                 if (data.status === 200) {
                     setIsOk(true)
@@ -27,7 +27,7 @@ function SpecialPage() {
                     messageBody.then(c => {
                         setShowError(true)
                         setIsOk(false)
-                        setError(c.Body.message)
+                        setError(c.message)
                     })
                 }
             })

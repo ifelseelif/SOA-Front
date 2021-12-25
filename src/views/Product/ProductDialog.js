@@ -37,7 +37,7 @@ const ProductDialog = (props) => {
                     let messageBody = api.GetObject(result)
                     messageBody.then(c => {
                         setOpenDialogError(true)
-                        setError(c.Body.message)
+                        setError(c.message)
                     })
                 } else {
                     dialogContext.hide()
@@ -61,7 +61,7 @@ const ProductDialog = (props) => {
                     let messageBody = api.GetObject(result)
                     messageBody.then(c => {
                         setOpenDialogError(true)
-                        setError(c.Body.message)
+                        setError(c.message)
                     })
                 }
             })

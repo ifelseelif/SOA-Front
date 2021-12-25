@@ -1,26 +1,36 @@
-let xml2js = require('xml2js');
-const parseStringPromise = require('xml2js').parseStringPromise;
+let baseUrl = "/soa-1/api"
 
 const Delete = (url, id) => {
-    return fetch(url + "/" + id, { method: 'DELETE' })
+    return fetch(baseUrl + url + "/" + id, {
+        method: 'DELETE', headers: {
+            'Content-Type': 'application/json'
+        },
+    })
 }
 
 const Add = (url, data) => {
-    let builder = new xml2js.Builder();
-    let xml = builder.buildObject(data);
-    return fetch(url, { method: 'POST', body: xml })
+    let body = JSON.stringify(data);
+    return fetch(baseUrl + url, {
+        method: 'POST', headers: {
+            'Content-Type': 'application/json'
+        }, body: body
+    })
 }
 
 const Update = (url, data) => {
-    let builder = new xml2js.Builder();
-    let xml = builder.buildObject(data);
+    let body = JSON.stringify(data);
     const urlWithId = url + "/" + data.id
-    return fetch(urlWithId, { method: 'PUT', body: xml })
+    return fetch(baseUrl + urlWithId, {
+        method: 'PUT', headers: {
+            'Content-Type': 'application/json'
+        }, body: body
+    })
 }
 
 const GetObject = async (data) => {
-    let message = await data.text()
-    return await parseStringPromise(message)
+    var responseBody = await data.text()
+    console.log(responseBody)
+    return JSON.parse(responseBody)
 }
 
 export default { GetObject, Delete, Add, Update };

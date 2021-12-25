@@ -34,7 +34,7 @@ const OrganizationDialog = (props) => {
                     let messageBody = api.GetObject(result)
                     messageBody.then(c => {
                         setOpenDialogError(true)
-                        setError(c.Body.message)
+                        setError(c.message)
                     })
                 }
             })
@@ -53,11 +53,11 @@ const OrganizationDialog = (props) => {
         const organization = getOrganization()
         Api.Update(props.url, organization)
             .then((result) => {
-                if (result.status !== 200) {
+                if (result.status !== 200 ) {
                     let messageBody = api.GetObject(result)
                     messageBody.then(c => {
                         setOpenDialogError(true)
-                        setError(c.Body.message)
+                        setError(c.message)
                     })
                 }else{
                     dialogContext.hide()

@@ -9,24 +9,24 @@ import { OrganizationType } from "../../data/organizations/organizationType";
 function OrganizationPage() {
 
     const getValueProperties = (row) => {
-        return [row.id[0], row.name[0], row.fullName[0], row.type[0], row.postalAddress[0].zipCode[0],
-            row.postalAddress[0].town[0].x[0], row.postalAddress[0].town[0].y[0], row.postalAddress[0].town[0].z[0]]
+        return [row.id, row.name, row.fullName, row.type, row.postalAddress.zipCode,
+            row.postalAddress.town.x, row.postalAddress.town.y, row.postalAddress.town.z]
     }
 
     const rawToOrganization = (row) => {
         return {
-            id: row.id[0],
-            name: row.name[0],
+            id: row.id,
+            name: row.name,
             postalAddress: {
-                zipCode: row.postalAddress[0].zipCode[0],
+                zipCode: row.postalAddress.zipCode,
                 town: {
-                    x: row.postalAddress[0].town[0].x[0],
-                    y: row.postalAddress[0].town[0].y[0],
-                    z: row.postalAddress[0].town[0].z[0]
+                    x: row.postalAddress.town.x,
+                    y: row.postalAddress.town.y,
+                    z: row.postalAddress.town.z
                 }
             },
-            fullName: row.fullName[0],
-            type: row.type[0]
+            fullName: row.fullName,
+            type: row.type
         }
     }
 

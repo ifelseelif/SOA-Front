@@ -60,14 +60,14 @@ const ExtendedTable = (props) => {
         setOpenTableError(false)
         let sorts = []
         sort.forEach(elem => sorts.push(['sort', elem.name + ';' + elem.order]))
-        fetch(props.url + '?' + new URLSearchParams(params) + "&" + new URLSearchParams(sorts), {
+        fetch("/soa-1/api" + props.url + '?' + new URLSearchParams(params) + "&" + new URLSearchParams(sorts), {
             method: 'GET'
         }).then((data) => {
             let messageBody = api.GetObject(data)
             if (data.status !== 200) {
                 setOpenTableError(true)
                 messageBody.then(c => {
-                    setError(c.Body.message)
+                    setError(c.message)
                     setOpenTableError(true)
                 })
             } else {
@@ -76,7 +76,7 @@ const ExtendedTable = (props) => {
                         setTableData([])
                         return
                     }
-                    setTableData(c.ArrayList.item)
+                    setTableData(c)
                 })
             }
         })
@@ -98,7 +98,7 @@ const ExtendedTable = (props) => {
                     let messageBody = api.GetObject(data)
                     messageBody.then(c => {
                         setOpenTableError(true)
-                        setError(c.Body.message)
+                        setError(c.message)
                     })
                 } else {
                     updateTable()
